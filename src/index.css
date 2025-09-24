@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* StudentPerks Brand Colors */
+    /* StudentPerks Exact Colors from PDF */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -18,41 +18,39 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Primary: Trust Blue */
-    --primary: 217 91% 54%;
+    /* Primary: Blue from PDF */
+    --primary: 220 100% 50%;
     --primary-foreground: 0 0% 100%;
     
-    /* Secondary: Soft Blue */
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 217 91% 54%;
+    /* Secondary: Light gray */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    /* Accent: Success Green */
-    --accent: 142 76% 36%;
+    /* Accent: Orange from PDF */
+    --accent: 25 95% 53%;
     --accent-foreground: 0 0% 100%;
+
+    /* Purple for buttons */
+    --purple: 259 85% 59%;
+    --purple-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 217 91% 54%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 220 100% 50%;
 
-    /* Custom StudentPerks tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(217 91% 54%) 0%, hsl(142 76% 36%) 100%);
-    --card-gradient: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 14% 98%) 100%);
-    --feature-gradient: linear-gradient(180deg, hsl(217 91% 97%) 0%, hsl(0 0% 100%) 100%);
+    /* Custom PDF Design tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(220 100% 50%) 0%, hsl(240 80% 60%) 100%);
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     
-    /* Shadows */
-    --shadow-sm: 0 2px 8px hsl(217 91% 54% / 0.08);
-    --shadow-md: 0 8px 25px hsl(217 91% 54% / 0.12);
-    --shadow-lg: 0 20px 40px hsl(217 91% 54% / 0.15);
-    
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Purple for buttons */
+    --purple: 259 85% 59%;
+    --purple-foreground: 0 0% 100%;
 
     --radius: 0.5rem;
 

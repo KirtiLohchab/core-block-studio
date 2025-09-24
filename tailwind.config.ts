@@ -39,6 +39,10 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        purple: {
+          DEFAULT: "hsl(var(--purple))",
+          foreground: "hsl(var(--purple-foreground))",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -60,13 +64,9 @@ export default {
       },
       backgroundImage: {
         'hero-gradient': 'var(--hero-gradient)',
-        'card-gradient': 'var(--card-gradient)',
-        'feature-gradient': 'var(--feature-gradient)',
       },
       boxShadow: {
-        'sm': 'var(--shadow-sm)',
-        'md': 'var(--shadow-md)',
-        'lg': 'var(--shadow-lg)',
+        'card': 'var(--card-shadow)',
       },
       transitionTimingFunction: {
         'smooth': 'var(--transition-smooth)',

@@ -1,5 +1,3 @@
-import logo from "@/assets/logo.png";
-
 const Footer = () => {
   const footerSections = [
     {
@@ -32,35 +30,29 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-card border-t">
+    <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="md:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <img src={logo} alt="StudentPerks Logo" className="h-10 w-auto" />
-            </div>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h3 className="text-xl font-bold mb-4">StudentPerks</h3>
+            <p className="text-gray-300 text-sm leading-relaxed">
               Making student life more affordable with exclusive discounts and offers.
             </p>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <div className="w-2 h-2 bg-accent rounded-full"></div>
-              <span>Government Verified Platform</span>
-            </div>
           </div>
 
           {/* Links Sections */}
           {footerSections.map((section, index) => (
             <div key={index}>
-              <h3 className="font-semibold text-card-foreground mb-4">
+              <h4 className="font-semibold mb-4">
                 {section.title}
-              </h3>
-              <ul className="space-y-3">
+              </h4>
+              <ul className="space-y-2">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <a 
                       href={link.href}
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      className="text-gray-300 text-sm hover:text-white transition-colors"
                     >
                       {link.name}
                     </a>
@@ -72,21 +64,10 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t mt-12 pt-8 flex flex-col md:flex-row items-center justify-between">
-          <p className="text-muted-foreground text-sm">
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+          <p className="text-gray-400 text-sm">
             © 2025 StudentPerks. All rights reserved.
           </p>
-          
-          <div className="flex items-center gap-6 mt-4 md:mt-0">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span>100% Secure</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span>APAR Verified</span>
-            </div>
-          </div>
         </div>
       </div>
     </footer>
