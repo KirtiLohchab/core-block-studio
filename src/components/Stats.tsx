@@ -9,7 +9,7 @@ const Stats = () => {
       label: "Brands"
     },
     {
-      value: "✓",
+      value: "100%",
       label: "Trusted Verification"
     }
   ];
