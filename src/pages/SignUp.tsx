@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link, useNavigate } from "react-router-dom";
+import studentsImage from "@/assets/students-celebration.jpg";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +13,7 @@ const SignUp = () => {
   });
   const [showOTP, setShowOTP] = useState(false);
   const [otpTimer, setOtpTimer] = useState(14);
+  const [otp, setOtp] = useState("");
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,121 +43,154 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <Link to="/" className="text-2xl font-bold text-primary">
-            StudentPerks
-          </Link>
-        </div>
+    <div className="min-h-screen flex">
+      {/* Left Side - Form */}
+      <div className="flex-1 flex items-center justify-center p-8 bg-background">
+        <div className="w-full max-w-md">
+          {/* Logo */}
+          <div className="flex items-center gap-2 mb-12">
+            <div className="w-6 h-6 bg-primary rounded-sm flex items-center justify-center">
+              <span className="text-white text-xs font-bold">📁</span>
+            </div>
+            <Link to="/" className="text-xl font-semibold text-foreground">
+              StudentPerks
+            </Link>
+          </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">
+          {/* Step Indicator */}
+          <div className="flex items-center gap-8 mb-8">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold">
+                1
+              </div>
+              <span className="text-sm font-medium text-foreground">CREATE</span>
+            </div>
+            <div className="flex-1 h-px bg-border"></div>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-muted text-muted-foreground rounded-full flex items-center justify-center text-sm font-semibold">
+                2
+              </div>
+              <span className="text-sm font-medium text-muted-foreground">VERIFY APAAR ID</span>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div className="space-y-6">
+            <h1 className="text-2xl font-bold text-foreground mb-8">
               Create your account
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="firstName">First name</Label>
-              <Input
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                placeholder="Enter your first name"
-              />
-            </div>
+            </h1>
 
-            <div className="space-y-2">
-              <Label htmlFor="lastName">Last name</Label>
-              <Input
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleInputChange}
-                placeholder="Enter your last name"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="emailOrMobile">Email or Mobile no.</Label>
-              <div className="flex gap-2">
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm text-muted-foreground mb-2">First name</label>
                 <Input
-                  id="emailOrMobile"
-                  name="emailOrMobile"
-                  value={formData.emailOrMobile}
+                  name="firstName"
+                  value={formData.firstName}
                   onChange={handleInputChange}
-                  placeholder="Enter email or mobile"
-                  className="flex-1"
+                  placeholder="Mohit"
+                  className="w-full h-12 bg-muted/30 border-0 rounded-lg"
                 />
-                {!showOTP ? (
+              </div>
+
+              <div>
+                <label className="block text-sm text-muted-foreground mb-2">Last name</label>
+                <Input
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  placeholder="Arora"
+                  className="w-full h-12 bg-muted/30 border-0 rounded-lg"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm text-muted-foreground mb-2">Email or Mobile no.</label>
+                <div className="flex gap-2">
+                  <Input
+                    name="emailOrMobile"
+                    value={formData.emailOrMobile}
+                    onChange={handleInputChange}
+                    placeholder="9873018991"
+                    className="flex-1 h-12 bg-muted/30 border-0 rounded-lg"
+                  />
                   <Button
                     onClick={handleVerify}
-                    variant="outline"
-                    className="px-4"
+                    variant="ghost"
+                    className="px-6 h-12 text-primary hover:bg-primary/10 font-semibold"
                   >
                     VERIFY
                   </Button>
-                ) : (
-                  <Button
-                    variant="outline"
-                    className="px-4"
-                    disabled
-                  >
-                    {otpTimer > 0 ? `00:${otpTimer.toString().padStart(2, '0')}` : 'EXPIRED'}
-                  </Button>
+                </div>
+                
+                {showOTP && (
+                  <div className="mt-4 space-y-4">
+                    <div className="flex gap-2 justify-center">
+                      {[0, 1, 2, 3, 4, 5].map((index) => (
+                        <Input
+                          key={index}
+                          type="text"
+                          maxLength={1}
+                          className="w-12 h-12 text-center text-lg font-semibold bg-muted/30 border-0 rounded-lg"
+                          value={otp[index] || ""}
+                          onChange={(e) => {
+                            const newOtp = otp.split("");
+                            newOtp[index] = e.target.value;
+                            setOtp(newOtp.join(""));
+                          }}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground text-center">
+                      You will receive an OTP within 00:{otpTimer.toString().padStart(2, '0')} secs
+                    </p>
+                  </div>
                 )}
               </div>
-              {showOTP && (
-                <p className="text-xs text-muted-foreground">
-                  You will receive an OTP within 00:{otpTimer.toString().padStart(2, '0')} secs
-                </p>
-              )}
-            </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password (enter 8 character)</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                placeholder="Enter password"
-                minLength={8}
-              />
-            </div>
+              <div>
+                <label className="block text-sm text-muted-foreground mb-2">Password (enter 8 character)</label>
+                <Input
+                  name="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  placeholder="Enter password"
+                  minLength={8}
+                  className="w-full h-12 bg-muted/30 border-0 rounded-lg"
+                />
+              </div>
 
-            <div className="text-xs text-muted-foreground">
-              By clicking Create Account, you agree to our{" "}
-              <Link to="#" className="text-primary hover:underline">
-                Privacy Policy
-              </Link>{" "}
-              and{" "}
-              <Link to="#" className="text-primary hover:underline">
-                T&Cs
-              </Link>
-              .
-            </div>
+              <div className="text-sm text-muted-foreground">
+                By clicking Create Account, you agree to our{" "}
+                <Link to="#" className="text-primary hover:underline">
+                  Privacy Policy
+                </Link>{" "}
+                and{" "}
+                <Link to="#" className="text-primary hover:underline">
+                  T&Cs
+                </Link>
+                .
+              </div>
 
-            <Button
-              onClick={handleCreateAccount}
-              className="w-full bg-purple text-purple-foreground hover:bg-purple/90"
-              size="lg"
-            >
-              Create account
-            </Button>
-
-            <div className="text-center text-sm">
-              Already have an account?{" "}
-              <Link to="/signin" className="text-primary hover:underline">
-                Sign In
-              </Link>
+              <Button
+                onClick={handleCreateAccount}
+                className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-semibold text-base"
+              >
+                Create account
+              </Button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Side - Image */}
+      <div className="hidden lg:flex flex-1 relative">
+        <img 
+          src={studentsImage}
+          alt="Happy students celebrating"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-primary/20 to-transparent"></div>
       </div>
     </div>
   );
