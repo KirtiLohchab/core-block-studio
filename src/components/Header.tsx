@@ -1,10 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  
+  // Hide auth buttons on sign-in, sign-up, and verify-apaar pages
+  const hideAuthButtons = ['/signin', '/signup', '/verify-apaar'].includes(location.pathname);
 
   return (
     <header className="w-full bg-background sticky top-0 z-50 border-b border-border/20">
@@ -16,31 +20,35 @@ const Header = () => {
           </Link>
 
           {/* Desktop Sign In/Sign Up */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link to="/signin">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10">
-                Sign In
-              </Button>
-            </Link>
-            <Link to="/signup">
-              <Button className="bg-primary hover:bg-primary/90">
-                Sign Up
-              </Button>
-            </Link>
-          </div>
+          {!hideAuthButtons && (
+            <div className="hidden md:flex items-center space-x-4">
+              <Link to="/signin">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary/10">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button className="bg-primary hover:bg-primary/90">
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          )}
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {!hideAuthButtons && (
+            <button
+              className="md:hidden p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          )}
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
+        {!hideAuthButtons && isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-border/20">
             <div className="flex flex-col space-y-4 pt-4">
               <Link to="/signin">
